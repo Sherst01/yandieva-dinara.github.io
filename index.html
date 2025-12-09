@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Яндиева Динара | Персональный сайт</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="https://img.icons8.com/color/96/000000/woman-profile.png">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        :root {
+            --primary-color: #8a2be2;
+            --secondary-color: #4169e1;
+            --accent-color: #ff69b4;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --gray-color: #6c757d;
+            --transition: all 0.3s ease;
+        }
+        body { background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); color: var(--dark-color); line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        header { background: rgba(255, 255, 255, 0.95); box-shadow: 0 5px 20px rgba(0,0,0,0.1); position: fixed; width: 100%; top: 0; z-index: 1000; }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 20px 0; }
+        .logo { font-size: 28px; font-weight: 800; background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; background-clip: text; color: transparent; text-decoration: none; }
+        .logo span { color: var(--accent-color); }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 30px; }
+        .nav-links a { text-decoration: none; color: var(--dark-color); font-weight: 600; font-size: 16px; transition: var(--transition); position: relative; }
+        .nav-links a:hover { color: var(--primary-color); }
+        .nav-links a::after { content: ''; position: absolute; width: 0; height: 3px; background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); bottom: -5px; left: 0; transition: var(--transition); }
+        .nav-links a:hover::after { width: 100%; }
+        .mobile-menu { display: none; font-size: 24px; cursor: pointer; }
+        
+        /* Hero */
+        .hero { padding: 180px 0 120px; text-align: center; position: relative; }
+        .hero-content h1 { font-size: 4rem; font-weight: 800; margin-bottom: 20px; background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .hero-content p { font-size: 1.5rem; color: var(--gray-color); max-width: 700px; margin: 0 auto 40px; }
+        .btn { display: inline-block; padding: 15px 40px; background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); color: white; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 18px; transition: var(--transition); box-shadow: 0 10px 20px rgba(138, 43, 226, 0.2); border: none; cursor: pointer; }
+        .btn:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(138, 43, 226, 0.3); }
+        .btn-outline { background: transparent; border: 2px solid var(--primary-color); color: var(--primary-color); margin-left: 15px; }
+        .btn-outline:hover { background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); color: white; }
+        
+        /* Sections */
+        .section { padding: 100px 0; }
+        .section-title { text-align: center; margin-bottom: 70px; }
+        .section-title h2 { font-size: 2.8rem; font-weight: 800; margin-bottom: 15px; position: relative; display: inline-block; }
+        .section-title h2::after { content: ''; position: absolute; width: 70px; height: 5px; background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); bottom: -15px; left: 50%; transform: translateX(-50%); border-radius: 5px; }
+        .section-title p { color: var(--gray-color); max-width: 600px; margin: 30px auto 0; font-size: 1.1rem; }
+        
+        /* About */
+        .about-content { display: flex; align-items: center; gap: 60px; }
+        .about-image { flex: 1; border-radius: 20px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .about-image img { width: 100%; height: auto; display: block; transition: var(--transition); }
+        .about-image:hover img { transform: scale(1.05); }
+        .about-text { flex: 1; }
+        .about-text h3 { font-size: 2rem; margin-bottom: 20px; }
+        .about-text p { margin-bottom: 25px; color: var(--gray-color); font-size: 1.1rem; }
+        .skills { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 30px; }
+        .skill { background: rgba(138, 43, 226, 0.1); padding: 10px 25px; border-radius: 50px; font-weight: 600; color: var(--primary-color); transition: var(--transition); }
+        .skill:hover { background: var(--primary-color); color: white; transform: translateY(-5px); }
+        
+        /* Portfolio */
+        .portfolio { background: rgba(248, 249, 250, 0.7); }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 30px; }
+        .portfolio-item { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.08); transition: var(--transition); }
+        .portfolio-item:hover { transform: translateY(-15px); box-shadow: 0 20px 40px rgba(0,0,0,0.15); }
+        .portfolio-img { height: 250px; overflow: hidden; }
+        .portfolio-img img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .portfolio-item:hover .portfolio-img img { transform: scale(1.1); }
+        .portfolio-info { padding: 25px; }
+        .portfolio-info h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .portfolio-info p { color: var(--gray-color); margin-bottom: 20px; }
+        
+        /* Contact */
+        .contact-content { display: flex; gap: 60px; }
+        .contact-info { flex: 1; }
+        .contact-form { flex: 1; }
+        .contact-item { display: flex; align-items: center; margin-bottom: 30px; }
+        .contact-icon { width: 60px; height: 60px; background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 20px; color: white; font-size: 22px; }
+        .contact-details h4 { font-size: 1.3rem; margin-bottom: 5px; }
+        .contact-details p { color: var(--gray-color); }
+        .form-group { margin-bottom: 25px; }
+        .form-group input, .form-group textarea { width: 100%; padding: 15px 20px; border: 2px solid #e9ecef; border-radius: 10px; font-size: 16px; transition: var(--transition); }
+        .form-group input:focus, .form-group textarea:focus { border-color: var(--primary-color); outline: none; }
+        .form-group textarea { height: 150px; resize: vertical; }
+        
+        /* Footer */
+        footer { background: var(--dark-color); color: white; padding: 70px 0 30px; }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .social-links { display: flex; gap: 20px; }
+        .social-links a { width: 50px; height: 50px; background: rgba(255,255,255,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 20px; transition: var(--transition); }
+        .social-links a:hover { background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); transform: translateY(-5px); }
+        .copyright { text-align: center; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1); color: rgba(255,255,255,0.7); }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero-content h1 { font-size: 3rem; }
+            .about-content, .contact-content { flex-direction: column; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { position: fixed; top: 80px; left: -100%; width: 100%; height: calc(100vh - 80px); background: white; flex-direction: column; align-items: center; padding-top: 50px; transition: var(--transition); }
+            .nav-links.active { left: 0; }
+            .nav-links li { margin: 20px 0; }
+            .mobile-menu { display: block; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .section-title h2 { font-size: 2.2rem; }
+            .portfolio-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 576px) {
+            .hero-content h1 { font-size: 2rem; }
+            .btn { margin-bottom: 10px; }
+            .footer-content { flex-direction: column; gap: 30px; }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 1s ease forwards; opacity: 0; }
+        .delay-1 { animation-delay: 0.2s; } .delay-2 { animation-delay: 0.4s; } .delay-3 { animation-delay: 0.6s; }
+        
+        /* Progress Bar */
+        .progress-container { width: 100%; height: 5px; background: transparent; position: fixed; top: 0; left: 0; z-index: 1001; }
+        .progress-bar { height: 5px; background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); width: 0%; }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress -->
+    <div class="progress-container"><div class="progress-bar" id="progressBar"></div></div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Яндиева<span>.</span></a>
+                <ul class="nav-links">
+                    <li><a href="#home">Главная</a></li>
+                    <li><a href="#about">Обо мне</a></li>
+                    <li><a href="#portfolio">Портфолио</a></li>
+                    <li><a href="#contact">Контакты</a></li>
+                </ul>
+                <div class="mobile-menu" id="mobileMenu"><i class="fas fa-bars"></i></div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="fade-in">Динара Яндиева</h1>
+                <p class="fade-in delay-1">Профессионал в своей области с страстью к созданию уникальных проектов и решений.</p>
+                <div class="fade-in delay-2">
+                    <a href="#portfolio" class="btn">Мои работы</a>
+                    <a href="#contact" class="btn btn-outline">Связаться</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Обо мне</h2>
+                <p>Узнайте больше о моем профессиональном пути, навыках и увлечениях</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image fade-in">
+                    <img src="https://images.unsplash.com/photo-1494790108755-2616b786d4d1?ixlib=rb-4.0.3&auto=format&fit=crop&w=687&q=80" alt="Динара Яндиева">
+                </div>
+                <div class="about-text fade-in delay-1">
+                    <h3>Привет, я Динара!</h3>
+                    <p>Я профессионал с многолетним опытом работы в своей области. Моя страсть — создавать уникальные проекты, которые не только красивы, но и функциональны.</p>
+                    <p>Мой подход к работе основан на внимании к деталям, креативности и стремлении к совершенству. Я верю, что лучшие результаты достигаются через сотрудничество и открытый диалог.</p>
+                    <div class="skills">
+                        <div class="skill">Креативность</div><div class="skill">Профессионализм</div><div class="skill">Коммуникация</div>
+                        <div class="skill">Аналитика</div><div class="skill">Дизайн</div><div class="skill">Стратегия</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section class="section portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Портфолио</h2>
+                <p>Некоторые из моих последних работ и проектов</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item fade-in">
+                    <div class="portfolio-img"><img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1074&q=80" alt="Проект 1"></div>
+                    <div class="portfolio-info"><h3>Корпоративный сайт</h3><p>Разработка современного корпоративного сайта с адаптивным дизайном.</p><a href="#contact" class="btn">Обсудить проект</a></div>
+                </div>
+                <div class="portfolio-item fade-in delay-1">
+                    <div class="portfolio-img"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1115&q=80" alt="Проект 2"></div>
+                    <div class="portfolio-info"><h3>Брендинг и айдентика</h3><p>Создание уникального брендинга и айдентики для стартапа.</p><a href="#contact" class="btn">Обсудить проект</a></div>
+                </div>
+                <div class="portfolio-item fade-in delay-2">
+                    <div class="portfolio-img"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1170&q=80" alt="Проект 3"></div>
+                    <div class="portfolio-info"><h3>Мобильное приложение</h3><p>Дизайн и разработка мобильного приложения для платформы.</p><a href="#contact" class="btn">Обсудить проект</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>Контакты</h2>
+                <p>Свяжитесь со мной для обсуждения вашего проекта</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info fade-in">
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-details"><h4>Адрес</h4><p>Москва, Россия</p></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone"></i></div>
+                        <div class="contact-details"><h4>Телефон</h4><p>+7 (999) 123-45-67</p></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-details"><h4>Email</h4><p>dinara@yandieva.ru</p></div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                        <div class="contact-details"><h4>Время работы</h4><p>Пн-Пт: 9:00 - 18:00</p></div>
+                    </div>
+                </div>
+                <div class="contact-form fade-in delay-1">
+                    <form id="contactForm">
+                        <div class="form-group"><input type="text" placeholder="Ваше имя" required></div>
+                        <div class="form-group"><input type="email" placeholder="Ваш email" required></div>
+                        <div class="form-group"><input type="text" placeholder="Тема сообщения" required></div>
+                        <div class="form-group"><textarea placeholder="Ваше сообщение" required></textarea></div>
+                        <button type="submit" class="btn">Отправить сообщение</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <a href="#" class="logo" style="color: white; -webkit-background-clip: initial; background-clip: initial;">Яндиева<span style="color: var(--accent-color);">.</span></a>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-vk"></i></a><a href="#"><i class="fab fa-telegram"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="copyright"><p>&copy; 2023 Яндиева Динара. Все права защищены.</p></div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.querySelector('.nav-links');
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenu.innerHTML = navLinks.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Scroll Progress
+        window.onscroll = function() {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        };
+        
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({ top: targetElement.offsetTop - 80, behavior: 'smooth' });
+                }
+            });
+        });
+        
+        // Form Submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо за ваше сообщение! Я свяжусь с вами в ближайшее время.');
+            this.reset();
+        });
+        
+        // Fade-in Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+        
+        // Auto-scroll to top on load
+        window.onload = function() {
+            setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+        };
+    </script>
+</body>
+</html>
